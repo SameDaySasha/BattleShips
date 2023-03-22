@@ -12,7 +12,7 @@ function eListener(row, column, cell) {
     } else {
       console.log(`Hit`);
       let grabCell = document.getElementById(`${row}${column}`);
-      grabCell.style.backgroundColor = "#00FF00";
+      grabCell.style.backgroundColor = "#008001";
       grabCell.style.height = "10px";
       grabCell.style.verticalAlign = "center";
       grabCell.style.fontSize = "25px";
