@@ -37,6 +37,9 @@ for (let i = 0; i < board.numRows; i++) {
     cell.dataset.row = i;
     cell.dataset.col = j;
     eListener(i, j, cell);
+    if(board.isGameOver()){
+      dListener(cell)
+    }
 
     row.appendChild(cell);
   }
@@ -62,4 +65,17 @@ title.style.textAlign = "center";
 
 console.log(board.grid);
 
-// Your code here
+// Your code
+//lockout funtion tied to the game is over function
+//lockout out function causes message to appear at the end of game
+//lockout condition is there are no more ships remaining
+//maybe a for loop that removes onclick event
+//lockoutout condition removeEventHandler with the same conditions as original eent handler
+//if statement isGameOver()
+//then create the div that congrats
+function dListener(cell) {
+  cell.removeEventListener("click", () => {
+
+  });
+  for()
+}
