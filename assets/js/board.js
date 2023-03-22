@@ -35,8 +35,10 @@ export default class Board {
     }
 
     makeHit(row, col) {
+        console.log(`this is the : ${this.grid[row][col]}`)
         if (this.grid[row][col]) {
             this.numRemaining--;
+            
         }
         return this.grid[row][col];
     }
