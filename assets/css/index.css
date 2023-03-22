@@ -1,11 +1,19 @@
+table {
+  display: grid;
+  /* padding-bottom: calc(100% / 9); */
+  /* float: left; */
+  /* gap: 5px; */
+  box-sizing: border-box;
+  /* grid-template-columns: repeat(9, 1fr); */
+  margin: 1px;
+}
 td {
-    display:grid;
-    padding-bottom: calc(100% / 9); 
-    float: left;
-    border: 1px solid #000;
-    box-sizing: border-box;
-    grid-template-columns: repeat(9, 5px);
-    margin:1px;
-    cursor:crosshair;
-};
+  border: 1px solid #000;
+  cursor: crosshair;
+  height: 50px;
+  width: 50px;
+}
 
+tr {
+  text-align: center;
+}
