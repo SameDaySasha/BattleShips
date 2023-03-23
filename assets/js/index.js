@@ -20,7 +20,6 @@ function eListener(row, column, cell) {
     }
     if(board.isGameOver()){
       displayGameOverMessage();
-
       dListener();
     }
 
@@ -31,9 +30,10 @@ function eListener(row, column, cell) {
 let boardContainer = document.createElement("div");
 boardContainer.setAttribute("id", "board-container");
 document.body.append(boardContainer);
-
-// populate with cells
+// made setBoard into a function and invoked it right after 
+function setBoard (){
 let table = document.createElement("table");
+table.setAttribute('id', 'game-table')
 for (let i = 0; i < board.numRows; i++) {
   let row = document.createElement("tr");
   for (let j = 0; j < board.numCols; j++) {
@@ -46,9 +46,10 @@ for (let i = 0; i < board.numRows; i++) {
     row.appendChild(cell);
   }
   table.appendChild(row);
-}
+  boardContainer.append(table);
+}}
+setBoard()
 
-boardContainer.append(table);
 
 let title = document.getElementById("title");
 title.style.width = "450px";
@@ -85,10 +86,39 @@ function dListener() {
 }
 
 function displayGameOverMessage() {
-  let gameOverMessage = document.createElement('div');
+  let table = document.querySelector('#game-table')
+  let gameOverMessage = document.createElement('h2');
   gameOverMessage.textContent = 'Congratulations! You have completed the game!';
   gameOverMessage.style.textAlign = 'center';
   gameOverMessage.style.fontSize = '24px';
   gameOverMessage.style.marginTop = '20px';
   boardContainer.insertBefore(gameOverMessage, table)
 }
+function resetBoard() {
+  board = new Board(); // Create a new game board
+  // select the game table 
+  let table = document.querySelector('#game-table')
+  boardContainer.removeChild(table);
+  table.innerHTML = '';
+  // remove everything inside it and set the board again
+  setBoard()
+}
+
+
+function removeGameOverMessage() {
+  let gameOverMessage = document.querySelector('h2');
+  if (gameOverMessage) {
+    gameOverMessage.remove();
+  }
+}
+
+let resetButton = document.createElement('button');
+resetButton.textContent = 'Reset';
+resetButton.style.display = 'block';
+resetButton.style.margin = '20px auto';
+resetButton.addEventListener('click', () => {
+  removeGameOverMessage();
+  resetBoard();
+});
+
+document.body.appendChild(resetButton);
