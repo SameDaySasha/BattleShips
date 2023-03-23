@@ -18,6 +18,16 @@ function eListener(row, column, cell) {
       grabCell.style.fontSize = "25px";
       grabCell.innerText = `${input}`;
     }
+    if(board.isGameOver()){
+      let cells = document.querySelectorAll('#board-container td')
+      cells.forEach(cell => {
+        cell.removeEventListener('click', eListener)
+      })
+      const message = document.createElement("p")
+      message.innerText = "Wow YOU did it!"
+      boardContainer.appendChild(message)
+      return;
+    }
     // else it turns the cell red and saves it to localStorage
   });
 }
@@ -73,9 +83,3 @@ console.log(board.grid);
 //lockoutout condition removeEventHandler with the same conditions as original eent handler
 //if statement isGameOver()
 //then create the div that congrats
-function dListener(cell) {
-  cell.removeEventListener("click", () => {
-
-  });
-  for()
-}
