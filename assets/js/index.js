@@ -19,15 +19,11 @@ function eListener(row, column, cell) {
       grabCell.innerText = `${input}`;
     }
     if(board.isGameOver()){
-      let cells = document.querySelectorAll('#board-container td')
-      cells.forEach(cell => {
-        cell.removeEventListener('click', eListener)
-      })
-      const message = document.createElement("p")
-      message.innerText = "Wow YOU did it!"
-      boardContainer.appendChild(message)
-      return;
+      displayGameOverMessage();
+
+      dListener();
     }
+
     // else it turns the cell red and saves it to localStorage
   });
 }
@@ -47,10 +43,6 @@ for (let i = 0; i < board.numRows; i++) {
     cell.dataset.row = i;
     cell.dataset.col = j;
     eListener(i, j, cell);
-    if(board.isGameOver()){
-      dListener(cell)
-    }
-
     row.appendChild(cell);
   }
   table.appendChild(row);
@@ -83,3 +75,20 @@ console.log(board.grid);
 //lockoutout condition removeEventHandler with the same conditions as original eent handler
 //if statement isGameOver()
 //then create the div that congrats
+function dListener() {
+  for (let i = 0; i < board.numRows; i++) {
+    for (let j = 0; j < board.numCols; j++) {
+      let cell = document.getElementById(`${i}${j}`)
+      cell.style.pointerEvents = "none";
+    }
+  }
+}
+
+function displayGameOverMessage() {
+  let gameOverMessage = document.createElement('div');
+  gameOverMessage.textContent = 'Congratulations! You have completed the game!';
+  gameOverMessage.style.textAlign = 'center';
+  gameOverMessage.style.fontSize = '24px';
+  gameOverMessage.style.marginTop = '20px';
+  boardContainer.insertBefore(gameOverMessage, table)
+}

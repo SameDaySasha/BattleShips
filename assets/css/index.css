@@ -1,3 +1,11 @@
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
 table {
   display: grid;
   /* padding-bottom: calc(100% / 9); */
